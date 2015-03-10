@@ -38,7 +38,31 @@ public class Do_External_Model extends DoSingletonModule implements Do_External_
 	 */
 	@Override
 	public boolean invokeSyncMethod(String _methodName, DoJsonNode _dictParas, DoIScriptEngine _scriptEngine, DoInvokeResult _invokeResult) throws Exception {
-		// ...do something
+		if ("openApp".equals(_methodName)) {
+			openApp(_dictParas, _scriptEngine, _invokeResult);
+			return true;
+		}
+		if ("openURL".equals(_methodName)) {
+			openURL(_dictParas, _scriptEngine, _invokeResult);
+			return true;
+		}
+		if ("openDial".equals(_methodName)) {
+			openDial(_dictParas, _scriptEngine, _invokeResult);
+			return true;
+		}
+		if ("openContact".equals(_methodName)) {
+			openContact(_dictParas, _scriptEngine, _invokeResult);
+			return true;
+		}
+
+		if ("openMail".equals(_methodName)) {
+			openMail(_dictParas, _scriptEngine, _invokeResult);
+			return true;
+		}
+		if ("openSMS".equals(_methodName)) {
+			openSMS(_dictParas, _scriptEngine, _invokeResult);
+			return true;
+		}
 		return super.invokeSyncMethod(_methodName, _dictParas, _scriptEngine, _invokeResult);
 	}
 
@@ -57,44 +81,18 @@ public class Do_External_Model extends DoSingletonModule implements Do_External_
 	 */
 	@Override
 	public boolean invokeAsyncMethod(String _methodName, DoJsonNode _dictParas, DoIScriptEngine _scriptEngine, String _callbackFuncName) throws Exception {
-		if ("openApp".equals(_methodName)) {
-			openApp(_dictParas, _scriptEngine, _callbackFuncName);
-			return true;
-		}
-		if ("openURL".equals(_methodName)) {
-			openURL(_dictParas, _scriptEngine, _callbackFuncName);
-			return true;
-		}
-		if ("openDial".equals(_methodName)) {
-			openDial(_dictParas, _scriptEngine, _callbackFuncName);
-			return true;
-		}
-		if ("openContact".equals(_methodName)) {
-			openContact(_dictParas, _scriptEngine, _callbackFuncName);
-			return true;
-		}
-
-		if ("openMail".equals(_methodName)) {
-			openMail(_dictParas, _scriptEngine, _callbackFuncName);
-			return true;
-		}
-		if ("openSMS".equals(_methodName)) {
-			openSMS(_dictParas, _scriptEngine, _callbackFuncName);
-			return true;
-		}
 		return super.invokeAsyncMethod(_methodName, _dictParas, _scriptEngine, _callbackFuncName);
 	}
 
 	/**
 	 * 启动其他应用；
 	 * 
-	 * @throws Exception
 	 * @_dictParas 参数（K,V），可以通过此对象提供相关方法来获取参数值（Key：为参数名称）；
 	 * @_scriptEngine 当前Page JS上下文环境对象
-	 * @_callbackFuncName 回调函数名
+	 * @_invokeResult 用于返回方法结果对象
 	 */
 	@Override
-	public void openApp(DoJsonNode _dictParas, final DoIScriptEngine _scriptEngine, final String _callbackFuncName) throws Exception {
+	public void openApp(DoJsonNode _dictParas, DoIScriptEngine _scriptEngine, DoInvokeResult _invokeResult) throws Exception {
 		String _wakeupid = _dictParas.getOneText("wakeupid", "");
 		DoJsonNode _data = _dictParas.getOneNode("data");
 		Activity _activity = (Activity) _scriptEngine.getCurrentPage().getPageView();
@@ -128,47 +126,14 @@ public class Do_External_Model extends DoSingletonModule implements Do_External_
 	}
 
 	/**
-	 * 调用系统默认浏览器；
-	 * 
-	 * @throws Exception
-	 * @_dictParas 参数（K,V），可以通过此对象提供相关方法来获取参数值（Key：为参数名称）；
-	 * @_scriptEngine 当前Page JS上下文环境对象
-	 * @_callbackFuncName 回调函数名
-	 */
-	@Override
-	public void openURL(DoJsonNode _dictParas, final DoIScriptEngine _scriptEngine, final String _callbackFuncName) throws Exception {
-		Activity _activity = (Activity) _scriptEngine.getCurrentPage().getPageView();
-		String _url = _dictParas.getOneText("url", "");
-		Intent _intent = new Intent(Intent.ACTION_VIEW, Uri.parse(_url));
-		_activity.startActivity(_intent);
-	}
-
-	/**
-	 * 打开拨号界面；
-	 * 
-	 * @throws Exception
-	 * @_dictParas 参数（K,V），可以通过此对象提供相关方法来获取参数值（Key：为参数名称）；
-	 * @_scriptEngine 当前Page JS上下文环境对象
-	 * @_callbackFuncName 回调函数名
-	 */
-	@Override
-	public void openDial(DoJsonNode _dictParas, DoIScriptEngine _scriptEngine, String _callbackFuncName) throws Exception {
-		Activity _activity = (Activity) _scriptEngine.getCurrentPage().getPageView();
-		String _number = _dictParas.getOneText("number", "");
-		Intent _intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + _number));
-		_activity.startActivity(_intent);
-	}
-
-	/**
 	 * 打开系统通讯录界面；
 	 * 
-	 * @throws Exception
 	 * @_dictParas 参数（K,V），可以通过此对象提供相关方法来获取参数值（Key：为参数名称）；
 	 * @_scriptEngine 当前Page JS上下文环境对象
-	 * @_callbackFuncName 回调函数名
+	 * @_invokeResult 用于返回方法结果对象
 	 */
 	@Override
-	public void openContact(DoJsonNode _dictParas, DoIScriptEngine _scriptEngine, String _callbackFuncName) throws Exception {
+	public void openContact(DoJsonNode _dictParas, DoIScriptEngine _scriptEngine, DoInvokeResult _invokeResult) throws Exception {
 		Activity _activity = (Activity) _scriptEngine.getCurrentPage().getPageView();
 		Intent _intent = new Intent(Intent.ACTION_VIEW);
 		_intent.setType("vnd.android.cursor.dir/contact");
@@ -176,15 +141,29 @@ public class Do_External_Model extends DoSingletonModule implements Do_External_
 	}
 
 	/**
-	 * 打开发送邮件界面；
+	 * 打开拨号界面；
 	 * 
-	 * @throws Exception
 	 * @_dictParas 参数（K,V），可以通过此对象提供相关方法来获取参数值（Key：为参数名称）；
 	 * @_scriptEngine 当前Page JS上下文环境对象
-	 * @_callbackFuncName 回调函数名
+	 * @_invokeResult 用于返回方法结果对象
 	 */
 	@Override
-	public void openMail(DoJsonNode _dictParas, DoIScriptEngine _scriptEngine, String _callbackFuncName) throws Exception {
+	public void openDial(DoJsonNode _dictParas, DoIScriptEngine _scriptEngine, DoInvokeResult _invokeResult) throws Exception {
+		Activity _activity = (Activity) _scriptEngine.getCurrentPage().getPageView();
+		String _number = _dictParas.getOneText("number", "");
+		Intent _intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + _number));
+		_activity.startActivity(_intent);
+	}
+
+	/**
+	 * 打开发送邮件界面；
+	 * 
+	 * @_dictParas 参数（K,V），可以通过此对象提供相关方法来获取参数值（Key：为参数名称）；
+	 * @_scriptEngine 当前Page JS上下文环境对象
+	 * @_invokeResult 用于返回方法结果对象
+	 */
+	@Override
+	public void openMail(DoJsonNode _dictParas, DoIScriptEngine _scriptEngine, DoInvokeResult _invokeResult) throws Exception {
 		Activity _activity = (Activity) _scriptEngine.getCurrentPage().getPageView();
 		String _subject = _dictParas.getOneText("subject", "");
 		String _content = _dictParas.getOneText("body", "");
@@ -200,13 +179,12 @@ public class Do_External_Model extends DoSingletonModule implements Do_External_
 	/**
 	 * 打开发送短信界面；
 	 * 
-	 * @throws Exception
 	 * @_dictParas 参数（K,V），可以通过此对象提供相关方法来获取参数值（Key：为参数名称）；
 	 * @_scriptEngine 当前Page JS上下文环境对象
-	 * @_callbackFuncName 回调函数名
+	 * @_invokeResult 用于返回方法结果对象
 	 */
 	@Override
-	public void openSMS(DoJsonNode _dictParas, DoIScriptEngine _scriptEngine, String _callbackFuncName) throws Exception {
+	public void openSMS(DoJsonNode _dictParas, DoIScriptEngine _scriptEngine, DoInvokeResult _invokeResult) throws Exception {
 		Activity _activity = (Activity) _scriptEngine.getCurrentPage().getPageView();
 		String _number = _dictParas.getOneText("number", "");
 		String _body = _dictParas.getOneText("body", "");
@@ -215,4 +193,20 @@ public class Do_External_Model extends DoSingletonModule implements Do_External_
 		_intent.putExtra("sms_body", _body);
 		_activity.startActivity(_intent);
 	}
+
+	/**
+	 * 调用系统默认浏览器；
+	 * 
+	 * @_dictParas 参数（K,V），可以通过此对象提供相关方法来获取参数值（Key：为参数名称）；
+	 * @_scriptEngine 当前Page JS上下文环境对象
+	 * @_invokeResult 用于返回方法结果对象
+	 */
+	@Override
+	public void openURL(DoJsonNode _dictParas, DoIScriptEngine _scriptEngine, DoInvokeResult _invokeResult) throws Exception {
+		Activity _activity = (Activity) _scriptEngine.getCurrentPage().getPageView();
+		String _url = _dictParas.getOneText("url", "");
+		Intent _intent = new Intent(Intent.ACTION_VIEW, Uri.parse(_url));
+		_activity.startActivity(_intent);
+	}
+
 }
