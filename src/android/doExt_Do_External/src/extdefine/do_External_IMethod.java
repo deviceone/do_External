@@ -7,7 +7,7 @@ import core.object.DoInvokeResult;
 /**
  * 声明自定义扩展组件方法
  */
-public interface Do_External_IMethod {
+public interface do_External_IMethod {
 	void openApp(DoJsonNode _dictParas,DoIScriptEngine _scriptEngine, DoInvokeResult _invokeResult) throws Exception ;
 	void openContact(DoJsonNode _dictParas,DoIScriptEngine _scriptEngine, DoInvokeResult _invokeResult) throws Exception ;
 	void openDial(DoJsonNode _dictParas,DoIScriptEngine _scriptEngine, DoInvokeResult _invokeResult) throws Exception ;

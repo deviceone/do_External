@@ -13,7 +13,7 @@ import core.helper.jsonparse.DoJsonValue;
 import core.interfaces.DoIScriptEngine;
 import core.object.DoInvokeResult;
 import core.object.DoSingletonModule;
-import extdefine.Do_External_IMethod;
+import extdefine.do_External_IMethod;
 
 /**
  * 自定义扩展SM组件Model实现，继承DoSingletonModule抽象类，并实现Do_Notification_IMethod接口方法；
@@ -22,9 +22,9 @@ import extdefine.Do_External_IMethod;
  * 参数解释：@_messageName字符串事件名称，@jsonResult传递事件参数对象； 获取DoInvokeResult对象方式
  * new DoInvokeResult(this.getUniqueKey());
  */
-public class Do_External_Model extends DoSingletonModule implements Do_External_IMethod {
+public class do_External_Model extends DoSingletonModule implements do_External_IMethod {
 
-	public Do_External_Model() throws Exception {
+	public do_External_Model() throws Exception {
 		super();
 	}
 
