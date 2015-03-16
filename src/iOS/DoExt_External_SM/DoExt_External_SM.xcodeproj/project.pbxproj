@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A4917C4B1A78940200FFB148 /* DoExt_External_SM.m in Sources */ = {isa = PBXBuildFile; fileRef = A4917C4A1A78940200FFB148 /* DoExt_External_SM.m */; };
+		A4917C4B1A78940200FFB148 /* do_External_SM.m in Sources */ = {isa = PBXBuildFile; fileRef = A4917C4A1A78940200FFB148 /* do_External_SM.m */; };
 		DDDB88841AA6E31F0074DF59 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDDB88831AA6E31F0074DF59 /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,11 +24,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A4917C471A78940200FFB148 /* DoExt_External_ISM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoExt_External_ISM.h; sourceTree = "<group>"; };
-		A4917C491A78940200FFB148 /* DoExt_External_SM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoExt_External_SM.h; sourceTree = "<group>"; };
-		A4917C4A1A78940200FFB148 /* DoExt_External_SM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoExt_External_SM.m; sourceTree = "<group>"; };
+		A4917C471A78940200FFB148 /* do_External_ISM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = do_External_ISM.h; sourceTree = "<group>"; };
+		A4917C491A78940200FFB148 /* do_External_SM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = do_External_SM.h; sourceTree = "<group>"; };
+		A4917C4A1A78940200FFB148 /* do_External_SM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = do_External_SM.m; sourceTree = "<group>"; };
 		A4E1EABD1A778F1700F0B3CE /* libDoExt_External_SM.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDoExt_External_SM.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		A4E1EADC1A778F8200F0B3CE /* DoExt_External_SM.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DoExt_External_SM.bundle; sourceTree = "<group>"; };
+		A4E1EADC1A778F8200F0B3CE /* do_External_SM.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = do_External_SM.bundle; sourceTree = "<group>"; };
 		DDDB88831AA6E31F0074DF59 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -47,7 +47,7 @@
 		A4917C461A78940200FFB148 /* ext_define */ = {
 			isa = PBXGroup;
 			children = (
-				A4917C471A78940200FFB148 /* DoExt_External_ISM.h */,
+				A4917C471A78940200FFB148 /* do_External_ISM.h */,
 			);
 			path = ext_define;
 			sourceTree = "<group>";
@@ -55,8 +55,8 @@
 		A4917C481A78940200FFB148 /* ext_implement */ = {
 			isa = PBXGroup;
 			children = (
-				A4917C491A78940200FFB148 /* DoExt_External_SM.h */,
-				A4917C4A1A78940200FFB148 /* DoExt_External_SM.m */,
+				A4917C491A78940200FFB148 /* do_External_SM.h */,
+				A4917C4A1A78940200FFB148 /* do_External_SM.m */,
 			);
 			path = ext_implement;
 			sourceTree = "<group>";
@@ -67,7 +67,7 @@
 				DDDB88831AA6E31F0074DF59 /* MessageUI.framework */,
 				A4917C461A78940200FFB148 /* ext_define */,
 				A4917C481A78940200FFB148 /* ext_implement */,
-				A4E1EADC1A778F8200F0B3CE /* DoExt_External_SM.bundle */,
+				A4E1EADC1A778F8200F0B3CE /* do_External_SM.bundle */,
 				A4E1EABE1A778F1700F0B3CE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -136,7 +136,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4917C4B1A78940200FFB148 /* DoExt_External_SM.m in Sources */,
+				A4917C4B1A78940200FFB148 /* do_External_SM.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

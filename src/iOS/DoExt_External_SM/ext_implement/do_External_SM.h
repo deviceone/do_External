@@ -6,11 +6,11 @@
 //  Copyright (c) 2015年 DoExt. All rights reserved.
 //
 
-#import "DoExt_External_ISM.h"
+#import "do_External_ISM.h"
 
 #import <MessageUI/MessageUI.h>
 #import "doSingletonModule.h"
 
-@interface DoExt_External_SM : doSingletonModule<DoExt_External_ISM,MFMessageComposeViewControllerDelegate>
+@interface do_External_SM : doSingletonModule<do_External_ISM,MFMessageComposeViewControllerDelegate>
 
 @end

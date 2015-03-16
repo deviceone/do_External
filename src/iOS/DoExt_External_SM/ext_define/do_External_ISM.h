@@ -1,3 +1,4 @@
+
 //
 //  TYPEID_IMethod.h
 //  DoExt_API
@@ -9,7 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "doInvokeResult.h"
 
-@protocol DoExt_External_ISM <NSObject>
+@protocol do_External_ISM <NSObject>
 
 @required
 //实现同步或异步方法，parms中包含了所需用的属性

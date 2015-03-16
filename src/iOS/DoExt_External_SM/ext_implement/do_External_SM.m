@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 DoExt. All rights reserved.
 //
 
-#import "DoExt_External_SM.h"
+#import "do_External_SM.h"
 
 #import "doScriptEngineHelper.h"
 #import "doIScriptEngine.h"
@@ -16,7 +16,7 @@
 #import "doIOHelper.h"
 #import "doIPage.h"
 
-@implementation DoExt_External_SM
+@implementation do_External_SM
 #pragma mark -
 #pragma mark - 同步异步方法的实现
 -(void)openApp:(NSArray *)parms
