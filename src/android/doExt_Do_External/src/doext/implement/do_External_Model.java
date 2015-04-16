@@ -1,4 +1,4 @@
-package extimplement;
+package doext.implement;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import core.helper.jsonparse.DoJsonValue;
 import core.interfaces.DoIScriptEngine;
 import core.object.DoInvokeResult;
 import core.object.DoSingletonModule;
-import extdefine.do_External_IMethod;
+import doext.define.do_External_IMethod;
 
 /**
  * 自定义扩展SM组件Model实现，继承DoSingletonModule抽象类，并实现Do_Notification_IMethod接口方法；
