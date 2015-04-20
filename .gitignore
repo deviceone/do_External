@@ -1,2 +1,7 @@
-/src/iOS
-/src/windows
+*.class
+*.apk
+bin/
+gen/
+.settings/
+proguard/
+*.classpath
