@@ -15,22 +15,25 @@
 #import <UIKit/UIKit.h>
 #import "doIOHelper.h"
 #import "doIPage.h"
+#import "doJsonHelper.h"
 
 @implementation do_External_SM
 #pragma mark -
 #pragma mark - 同步异步方法的实现
 -(void)openApp:(NSArray *)parms
 {
-    doJsonNode * _dictParas =[parms objectAtIndex:0];
+    NSDictionary * _dictParas =[parms objectAtIndex:0];
     doInvokeResult * _invokeResult = [parms objectAtIndex:2];
-    NSString* _wakeupid = [_dictParas GetOneText:@"wakeupid" :@""];
-    doJsonNode *_data = [_dictParas GetOneNode:@"data"];
-    NSMutableArray *_arr = [_data GetAllValues];
+    NSString* _wakeupid = [doJsonHelper GetOneText:_dictParas :@"wakeupid" :@""];
+    
+    NSDictionary *_data = [doJsonHelper GetOneNode:_dictParas :@"data"];
+
+    NSArray *_arr = [_data allKeys];
     NSMutableString *_openparms= [[NSMutableString alloc]init];
-    for(doJsonValue *_entry  in _arr)
+    for(NSString *_entry  in _arr)
     {
-        NSString *key = _entry.NodeName;
-        NSString *value = [_entry GetText:@""];
+        NSString *key = _entry;
+        NSString *value = [_data objectForKey:_entry];
         [_openparms appendString:[NSString stringWithFormat:@"%@&%@",key,value]];
     }
     [self openExternal:[NSString stringWithFormat:@"%@://%@",_wakeupid,_openparms]:_invokeResult];
@@ -39,9 +42,9 @@
 //调用系统默认浏览器打开指定url
 - (void) openURL:(NSArray*) parms
 {
-    doJsonNode * _dictParas =[parms objectAtIndex:0];
+    NSDictionary * _dictParas =[parms objectAtIndex:0];
     doInvokeResult * _invokeResult = [parms objectAtIndex:2];
-    NSString* callUrl = [_dictParas GetOneText:@"url" :@""];
+    NSString* callUrl = [doJsonHelper GetOneText:_dictParas :@"url" :@""];
     NSString *openStr;
     //打开系统浏览器
     if ([callUrl hasPrefix:@"http://"]||[callUrl hasPrefix:@"https://"]) {
@@ -59,9 +62,9 @@
 //拨打指定电话号码
 - (void) openDial:(NSArray*) parms
 {
-    doJsonNode * _dictParas =[parms objectAtIndex:0];
+    NSDictionary * _dictParas =[parms objectAtIndex:0];
     doInvokeResult * _invokeResult = [parms objectAtIndex:2];
-    NSString* _url = [_dictParas GetOneText:@"number" :@""];
+    NSString* _url = [doJsonHelper GetOneText:_dictParas :@"number" :@""];
     [self openExternal:[NSString stringWithFormat:@"tel://%@",_url] :_invokeResult];
 }
 
@@ -73,12 +76,12 @@
 
 - (void) openMail:(NSArray*) parms
 {
-    doJsonNode * _dictParas =[parms objectAtIndex:0];
+    NSDictionary * _dictParas =[parms objectAtIndex:0];
     doInvokeResult * _invokeResult = [parms objectAtIndex:2];
-    NSString *subject =[_dictParas GetOneText:@"subject" :@""];
-    NSString *body = [_dictParas GetOneText:@"body" :@""];
-    NSString *address = [_dictParas GetOneText:@"fromAddress" :@""];
-    NSString *cc =[_dictParas GetOneText:@"toAddress" :@""];
+    NSString *subject =[doJsonHelper GetOneText:_dictParas :@"subject" :@""];
+    NSString *body = [doJsonHelper GetOneText:_dictParas :@"body" :@""];
+    NSString *address = [doJsonHelper GetOneText:_dictParas :@"fromAddress" :@""];
+    NSString *cc =[doJsonHelper GetOneText:_dictParas :@"toAddress" :@""];
     NSString *path = [NSString stringWithFormat:@"mailto:%@?cc=%@&subject=%@&body=%@", address, cc, subject, body];
     
     [self openExternal:path:_invokeResult];
@@ -86,12 +89,11 @@
 
 - (void) openSMS:(NSArray*) parms
 {
-    doJsonNode * _dictParas =[parms objectAtIndex:0];
+    NSDictionary * _dictParas =[parms objectAtIndex:0];
     id<doIScriptEngine> ii =[parms objectAtIndex:1];
     
-    NSString *_number =[_dictParas GetOneText:@"number" :@""];
-    NSString *_message = [_dictParas GetOneText:@"message" :@""];
-    
+    NSString *_number =[doJsonHelper GetOneText:_dictParas :@"number" :@""];
+    NSString *_message = [doJsonHelper GetOneText:_dictParas :@"message" :@""];
     MFMessageComposeViewController * controller = [[MFMessageComposeViewController alloc]init]; //autorelease];
     
     controller.recipients = [NSArray arrayWithObject:_number];
